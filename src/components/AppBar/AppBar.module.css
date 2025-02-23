@@ -1,0 +1,20 @@
+.container {
+  padding: 20px 128px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #121417;
+}

@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+}
+
+.authList {
+  list-style: none;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.firstItem {
+  display: flex;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #121417;
+}
+
+.secondItem {
+  border-radius: 12px;
+  padding: 14px 39px;
+  background: #121417;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #fff;
+}
