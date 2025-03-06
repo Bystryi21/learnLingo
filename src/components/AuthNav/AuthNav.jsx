@@ -1,5 +1,5 @@
 import css from "./AuthNav.module.css";
-import LogIn from "../Svg/logIn";
+import LogIn from "../Svg/LogIn";
 
 export default function AuthNav() {
   return (
