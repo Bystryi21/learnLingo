@@ -8,10 +8,12 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import authReducer from "./auth/slice";
 
 export const store = configureStore({
   reducer: {
     teachers: teachersReducer,
+    auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

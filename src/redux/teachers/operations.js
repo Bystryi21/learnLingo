@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = "https://test-dfa2b-default-rtdb.firebaseio.com/";
+axios.defaults.baseURL = "https://teachers-7a7ce-default-rtdb.firebaseio.com";
 
 export const fetchTeachers = createAsyncThunk(
   "teachers/fetchAll",
