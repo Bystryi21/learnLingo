@@ -30,3 +30,7 @@
   line-height: 1.25;
   color: #fff;
 }
+
+.btn {
+  all: unset;
+}

@@ -16,3 +16,20 @@ export const register = createAsyncThunk(
     }
   }
 );
+
+export const login = createAsyncThunk(
+  "auth/login",
+  async (credentials, thunkApi) => {
+    try {
+      const { data } = await axios.post(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBeLL5Qh1AJiLmlYt-NhpRFBcFeU8xKsBc",
+        { ...credentials, returnSecureToken: true }
+      );
+
+      console.log(data);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
