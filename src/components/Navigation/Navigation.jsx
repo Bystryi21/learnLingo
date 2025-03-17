@@ -12,7 +12,7 @@ export default function Navigation() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="teachers" className={css.item}>
+            <NavLink to="/teachers" className={css.item}>
               Teachers
             </NavLink>
           </li>

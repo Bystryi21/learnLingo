@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import teachersReducer from "./teachers/slice";
 import {
+  persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -8,13 +10,23 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import authReducer from "./auth/slice";
 import modalReducer from "./modal/slice";
+
+const persistedAuthReducer = persistReducer(
+  {
+    key: "token",
+    storage,
+    whitelist: ["token"],
+  },
+  authReducer
+);
 
 export const store = configureStore({
   reducer: {
     teachers: teachersReducer,
-    auth: authReducer,
+    auth: persistedAuthReducer,
     modal: modalReducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -24,3 +36,5 @@ export const store = configureStore({
       },
     }),
 });
+
+export const persistor = persistStore(store);

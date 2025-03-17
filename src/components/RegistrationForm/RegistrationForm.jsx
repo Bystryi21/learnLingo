@@ -33,10 +33,15 @@ export default function RegistrationForm() {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (values, actions) => {
-    console.log(values);
-    dispatch(register(values));
-    actions.resetForm();
+  const handleSubmit = async (values, actions) => {
+    try {
+      console.log(values);
+      dispatch(register(values)).unwrap();
+      actions.resetForm();
+      dispatch(closeModalRegister());
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

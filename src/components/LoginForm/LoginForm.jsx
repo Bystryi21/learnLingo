@@ -33,9 +33,14 @@ export default function LoginForm() {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (values, actions) => {
-    dispatch(login(values));
-    actions.resetForm();
+  const handleSubmit = async (values, actions) => {
+    try {
+      await dispatch(login(values)).unwrap();
+      actions.resetForm();
+      dispatch(closeModalLogin());
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

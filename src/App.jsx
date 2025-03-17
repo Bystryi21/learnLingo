@@ -3,6 +3,8 @@ import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import Teachers from "./pages/Teachers/Teachers";
 import NotFound from "./components/NotFound/NotFound";
+import LoginForm from "./components/LoginForm/LoginForm";
+import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Route path="favourites" />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <LoginForm />
+      <RegistrationForm />
     </>
   );
 }

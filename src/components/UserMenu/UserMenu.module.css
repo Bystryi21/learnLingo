@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.parag {
+  margin: 0;
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn {
+  border-radius: 12px;
+  padding: 14px 39px;
+  background: #121417;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #fff;
+}
