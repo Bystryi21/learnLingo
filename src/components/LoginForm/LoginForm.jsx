@@ -7,6 +7,8 @@ import { selectLoginModal } from "../../redux/modal/selectors";
 import css from "./LoginForm.module.css";
 import { useEffect } from "react";
 import { useCallback } from "react";
+import Close from "../Svg/Close";
+import Eye from "../Svg/Eye";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -43,22 +45,41 @@ export default function LoginForm() {
     }
   };
 
+  const closeHandler = () => {
+    dispatch(closeModalLogin());
+  };
+
   return (
-    <ModalBackdrop onClick={() => dispatch(closeModalLogin())}>
+    <ModalBackdrop onClick={closeHandler}>
       <div className={css.wrapper} onClick={(e) => e.stopPropagation()}>
-        <h2 className={css.title}>Login Form</h2>
+        <h2 className={css.title}>Log In</h2>
+        <p className={css.par}>
+          Welcome back! Please enter your credentials to access your account and
+          continue your search for an teacher.
+        </p>
         <Formik
           initialValues={{ email: "", password: "" }}
           onSubmit={handleSubmit}
         >
           <Form className={css.form}>
             <label className={css.label}>
-              Email
-              <Field type="email" name="email" className={css.input} />
+              <Field
+                type="email"
+                name="email"
+                className={css.input}
+                placeholder="Email"
+              />
             </label>
             <label className={css.label}>
-              Password
-              <Field type="password" name="password" className={css.input} />
+              <Field
+                type="password"
+                name="password"
+                className={css.input}
+                placeholder="Password"
+              />
+              <div className={css.eye}>
+                <Eye />
+              </div>
             </label>
             <div className={css.btnWrapper}>
               <button type="submit" className={css.btn}>
@@ -67,6 +88,9 @@ export default function LoginForm() {
             </div>
           </Form>
         </Formik>
+        <div className={css.close} onClick={closeHandler}>
+          <Close />
+        </div>
       </div>
     </ModalBackdrop>
   );

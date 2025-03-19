@@ -7,6 +7,8 @@ import { selectRegisterModal } from "../../redux/modal/selectors";
 import css from "./Registration.module.css";
 import { useCallback } from "react";
 import { useEffect } from "react";
+import Close from "../Svg/Close";
+import Eye from "../Svg/Eye";
 
 export default function RegistrationForm() {
   const dispatch = useDispatch();
@@ -44,34 +46,61 @@ export default function RegistrationForm() {
     }
   };
 
+  const closeHandler = () => {
+    dispatch(closeModalRegister());
+  };
+
   return (
-    <ModalBackdrop onClick={() => dispatch(closeModalRegister())}>
+    <ModalBackdrop onClick={closeHandler}>
       <div className={css.wrapper} onClick={(e) => e.stopPropagation()}>
-        <h2 className={css.title}>Registration Form</h2>
+        <h2 className={css.title}>Registration</h2>
+        <p className={css.par}>
+          Thank you for your interest in our platform! In order to register, we
+          need some information. Please provide us with the following
+          information
+        </p>
         <Formik
           initialValues={{ name: "", email: "", password: "" }}
           onSubmit={handleSubmit}
         >
           <Form className={css.form}>
             <label className={css.label}>
-              Username
-              <Field type="text" name="name" className={css.input} />
+              <Field
+                type="text"
+                name="name"
+                className={css.input}
+                placeholder="Username"
+              />
             </label>
             <label className={css.label}>
-              Email
-              <Field type="email" name="email" className={css.input} />
+              <Field
+                type="email"
+                name="email"
+                className={css.input}
+                placeholder="Email"
+              />
             </label>
             <label className={css.label}>
-              Password
-              <Field type="password" name="password" className={css.input} />
+              <Field
+                type="password"
+                name="password"
+                className={css.input}
+                placeholder="Password"
+              />
+              <div className={css.eye}>
+                <Eye />
+              </div>
             </label>
             <div className={css.btnWrapper}>
               <button type="submit" className={css.btn}>
-                Login
+                Sign Up
               </button>
             </div>
           </Form>
         </Formik>
+        <div className={css.close} onClick={closeHandler}>
+          <Close />
+        </div>
       </div>
     </ModalBackdrop>
   );
