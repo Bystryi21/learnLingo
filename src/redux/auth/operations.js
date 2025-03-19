@@ -33,3 +33,11 @@ export const login = createAsyncThunk(
     }
   }
 );
+
+// export const refreshUser = createAsyncThunk(
+//   "auth/refresh",
+//   async (_, thunkApi) => {
+//     const reduxState = thunkApi.getState();
+//     console.log(reduxState);
+//   }
+// );

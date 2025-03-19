@@ -5,6 +5,7 @@ import Teachers from "./pages/Teachers/Teachers";
 import NotFound from "./components/NotFound/NotFound";
 import LoginForm from "./components/LoginForm/LoginForm";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
+import Faviurites from "./pages/Favourites/Favourites";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="teachers" element={<Teachers />} />
-        <Route path="favourites" />
+        <Route path="favourites" element={<Faviurites />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <LoginForm />

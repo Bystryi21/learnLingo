@@ -1,6 +1,9 @@
+import { useDispatch } from "react-redux";
 import css from "./AboutUs.module.css";
+import { openModalRegister } from "../../redux/modal/slice";
 
 export default function AboutUs() {
+  const dispatch = useDispatch();
   return (
     <>
       <div className={css.container}>
@@ -15,14 +18,18 @@ export default function AboutUs() {
             highly qualified and experienced tutors.
           </p>
           <div className={css.btnWrapper}>
-            <button type="button" className={css.btn}>
+            <button
+              type="button"
+              className={css.btn}
+              onClick={() => dispatch(openModalRegister())}
+            >
               Get started
             </button>
           </div>
         </div>
         <div>
           <img
-            src="../../../womenWithLaptop-min.jpg"
+            src="womenWithLaptop-min.jpg"
             alt="women with laptop"
             className={css.img}
           />
