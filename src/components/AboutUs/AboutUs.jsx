@@ -29,7 +29,7 @@ export default function AboutUs() {
         </div>
         <div>
           <img
-            src="womenWithLaptop-min.jpg"
+            src="/womenWithLaptop-min.jpg"
             alt="women with laptop"
             className={css.img}
           />
