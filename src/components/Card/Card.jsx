@@ -1,15 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Favourites from "../Svg/Favourites";
 import LessonsOnline from "../Svg/LessonsOnline";
 import Star from "../Svg/Star";
 import Stick from "../Svg/Stick";
 import css from "./Card.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { selectBookModal } from "../../redux/modal/selectors.js";
+import { openBookModal } from "../../redux/modal/slice.js";
 
 export default function Card({ value }) {
   const [addValue, setAddValue] = useState(false);
-  const valueHandler = () => {
-    setAddValue((prev) => !prev);
-  };
+
+  const [isFavourite, setIsFavourite] = useState(false);
+
+  const dispatch = useDispatch();
 
   const {
     lessons_done,
@@ -23,7 +28,48 @@ export default function Card({ value }) {
     levels,
     languages,
     reviews,
+    id,
   } = value;
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  const valueHandler = () => {
+    setAddValue((prev) => !prev);
+  };
+
+  useEffect(() => {
+    const favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+
+    if (favourites.some((fav) => fav.id === id)) {
+      setIsFavourite(true);
+    }
+  }, [id]);
+
+  const handleFavouriteClick = () => {
+    if (!isLoggedIn) {
+      alert("Будь ласка, увійдіть, щоб додати до обраних");
+      return;
+    }
+
+    let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+
+    if (isFavourite) {
+      favourites = favourites.filter((fav) => fav.id !== id);
+    } else {
+      favourites.push(value);
+    }
+
+    localStorage.setItem("favourites", JSON.stringify(favourites));
+    setIsFavourite(!isFavourite);
+  };
+
+  const handlerBookTrial = () => {
+    dispatch(openBookModal());
+  };
+
+  const isOpen = useSelector(selectBookModal);
+  console.log(isOpen);
+
   return (
     <div className={css.container} onClick={valueHandler}>
       <div>
@@ -56,8 +102,14 @@ export default function Card({ value }) {
               <span className={css.priceColor}>{price_per_hour}$</span>
             </p>
           </div>
-          <div className={css.favourites}>
-            <Favourites />
+          <div
+            className={css.favourites}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleFavouriteClick();
+            }}
+          >
+            <Favourites fill={isFavourite ? "red" : "white"} />
           </div>
         </div>
         <div>
@@ -126,7 +178,15 @@ export default function Card({ value }) {
           ))}
         </ul>
         {addValue && (
-          <button className={css.trialBtn}>Book trial lesson</button>
+          <button
+            className={css.trialBtn}
+            onClick={(e) => {
+              e.stopPropagation();
+              handlerBookTrial();
+            }}
+          >
+            Book trial lesson
+          </button>
         )}
       </div>
     </div>

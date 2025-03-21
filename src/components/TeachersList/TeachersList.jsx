@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { fetchTeachers } from "../../redux/teachers/operations";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../Card/Card";
-import { nanoid } from "nanoid";
 import css from "./Teachers.module.css";
 
 export default function TeachersList() {
@@ -19,8 +18,8 @@ export default function TeachersList() {
       <ul className={css.list}>
         {list.map((item) => {
           return (
-            <li key={nanoid()} className={css.item}>
-              <Card value={item} />
+            <li key={item.id} className={css.item}>
+              <Card value={item} from="teacherlist" />
             </li>
           );
         })}
