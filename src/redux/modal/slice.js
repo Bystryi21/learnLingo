@@ -6,6 +6,7 @@ const modalSlice = createSlice({
     isOpenLoginModal: false,
     isOpenRegisterModal: false,
     isOpenBookModal: false,
+    bookData: null,
   },
   reducers: {
     openModalLogin: (state) => {
@@ -14,6 +15,7 @@ const modalSlice = createSlice({
       state.isOpenBookModal = false;
     },
     closeModalLogin: (state) => {
+      console.log("Book modal closed");
       state.isOpenLoginModal = false;
       state.isOpenBookModal = false;
     },
@@ -27,15 +29,17 @@ const modalSlice = createSlice({
       state.isOpenRegisterModal = false;
       state.isOpenBookModal = false;
     },
-    openBookModal: (state) => {
+    openBookModal: (state, action) => {
       state.isOpenBookModal = true;
       state.isOpenLoginModal = false;
       state.isOpenRegisterModal = false;
+      state.bookData = action.payload;
     },
     closeBookModal: (state) => {
       state.isOpenBookModal = false;
       state.isOpenLoginModal = false;
       state.isOpenRegisterModal = false;
+      state.bookData = null;
     },
   },
 });

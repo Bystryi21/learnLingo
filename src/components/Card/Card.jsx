@@ -64,11 +64,10 @@ export default function Card({ value }) {
   };
 
   const handlerBookTrial = () => {
-    dispatch(openBookModal());
+    dispatch(openBookModal(value));
   };
 
   const isOpen = useSelector(selectBookModal);
-  console.log(isOpen);
 
   return (
     <div className={css.container} onClick={valueHandler}>

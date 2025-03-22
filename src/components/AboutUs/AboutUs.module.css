@@ -53,6 +53,7 @@
   border-radius: 12px;
   padding: 16px 88px;
   border: none;
+  cursor: pointer;
   /* width: 267px;
   height: 60px; */
 }

@@ -33,4 +33,5 @@
 
 .btn {
   all: unset;
+  cursor: pointer;
 }

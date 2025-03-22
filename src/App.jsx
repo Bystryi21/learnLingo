@@ -6,6 +6,7 @@ import NotFound from "./components/NotFound/NotFound";
 import LoginForm from "./components/LoginForm/LoginForm";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import Faviurites from "./pages/Favourites/Favourites";
+import BookTrial from "./components/BookTrial/BookTrial";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       </Routes>
       <LoginForm />
       <RegistrationForm />
+      <BookTrial />
     </>
   );
 }
