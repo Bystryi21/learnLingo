@@ -2,18 +2,21 @@ import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/auth/operations";
 import ModalBackdrop from "../ModalBackdrop/ModalBackdrop";
-import { closeModalLogin } from "../../redux/modal/slice";
-import { selectLoginModal } from "../../redux/modal/selectors";
+import { closeModalLogin, togglePassword } from "../../redux/modal/slice";
+import { selectLoginModal, selectPassword } from "../../redux/modal/selectors";
 import css from "./LoginForm.module.css";
 import { useEffect } from "react";
 import { useCallback } from "react";
 import Close from "../Svg/Close";
 import Eye from "../Svg/Eye";
+import { FaRegEye } from "react-icons/fa";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
 
   const isOpen = useSelector(selectLoginModal);
+
+  const isOpenPassword = useSelector(selectPassword);
 
   const handleKeyDown = useCallback(
     (e) => {
@@ -49,6 +52,10 @@ export default function LoginForm() {
     dispatch(closeModalLogin());
   };
 
+  const passwordIsOpen = () => {
+    dispatch(togglePassword());
+  };
+
   return (
     <ModalBackdrop onClick={closeHandler}>
       <div className={css.wrapper} onClick={(e) => e.stopPropagation()}>
@@ -72,14 +79,21 @@ export default function LoginForm() {
             </label>
             <label className={css.label}>
               <Field
-                type="password"
+                type={isOpenPassword ? "text" : "password"}
                 name="password"
                 className={css.input}
                 placeholder="Password"
+                onClick={passwordIsOpen}
               />
-              <div className={css.eye}>
-                <Eye />
-              </div>
+              {isOpenPassword ? (
+                <div className={css.eye}>
+                  <FaRegEye />
+                </div>
+              ) : (
+                <div className={css.eye}>
+                  <Eye />
+                </div>
+              )}
             </label>
             <div className={css.btnWrapper}>
               <button type="submit" className={css.btn}>

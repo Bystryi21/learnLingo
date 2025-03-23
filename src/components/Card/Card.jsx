@@ -64,10 +64,11 @@ export default function Card({ value }) {
   };
 
   const handlerBookTrial = () => {
+    if (!isLoggedIn) {
+      return alert("Please logged in");
+    }
     dispatch(openBookModal(value));
   };
-
-  const isOpen = useSelector(selectBookModal);
 
   return (
     <div className={css.container} onClick={valueHandler}>
