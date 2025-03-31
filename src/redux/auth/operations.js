@@ -9,7 +9,7 @@ export const register = createAsyncThunk(
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBeLL5Qh1AJiLmlYt-NhpRFBcFeU8xKsBc",
         { ...credentials, returnSecureToken: true }
       );
-      console.log(data);
+
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -26,7 +26,6 @@ export const login = createAsyncThunk(
         { ...credentials, returnSecureToken: true }
       );
 
-      console.log(data);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

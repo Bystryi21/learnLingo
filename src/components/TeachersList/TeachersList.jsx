@@ -8,7 +8,6 @@ export default function TeachersList() {
   const dispatch = useDispatch();
 
   const list = useSelector((state) => state.teachers.items);
-  console.log(list);
 
   useEffect(() => {
     dispatch(fetchTeachers());
@@ -24,7 +23,9 @@ export default function TeachersList() {
           );
         })}
       </ul>
-      <button type="button">Load more</button>
+      <button type="button" className={css.btn}>
+        Load more
+      </button>
     </div>
   );
 }

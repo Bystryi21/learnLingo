@@ -3,12 +3,14 @@ import Favourites from "../Svg/Favourites";
 import LessonsOnline from "../Svg/LessonsOnline";
 import Star from "../Svg/Star";
 import Stick from "../Svg/Stick";
+import Online from "../Svg/Online.jsx";
 import css from "./Card.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { openBookModal } from "../../redux/modal/slice.js";
+import YelllowFavourites from "../Svg/YelllowFavourites.jsx";
 
-export default function Card({ value }) {
+export default function Card({ value, onRemove }) {
   const [addValue, setAddValue] = useState(false);
 
   const [isFavourite, setIsFavourite] = useState(false);
@@ -54,6 +56,9 @@ export default function Card({ value }) {
 
     if (isFavourite) {
       favourites = favourites.filter((fav) => fav.id !== id);
+      localStorage.setItem("favourites", JSON.stringify(favourites));
+      setIsFavourite(false);
+      onRemove(id);
     } else {
       favourites.push(value);
     }
@@ -73,6 +78,10 @@ export default function Card({ value }) {
     <div className={css.container} onClick={valueHandler}>
       <div>
         <div className={css.imgWrapper}>
+          <div className={css.online}>
+            <Online />
+          </div>
+
           <img src={value.avatar_url} alt="" className={css.img} />
         </div>
       </div>
@@ -108,7 +117,7 @@ export default function Card({ value }) {
               handleFavouriteClick();
             }}
           >
-            <Favourites fill={isFavourite ? "red" : "white"} />
+            {isFavourite ? <YelllowFavourites /> : <Favourites />}
           </div>
         </div>
         <div>

@@ -21,3 +21,10 @@
   background: #fff;
   position: relative;
 }
+
+.btn {
+  background: #f4c550;
+  border-radius: 12px;
+  padding: 16px 48px;
+  border: none;
+}
