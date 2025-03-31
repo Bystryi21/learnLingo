@@ -6,7 +6,6 @@ import Stick from "../Svg/Stick";
 import css from "./Card.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
-import { selectBookModal } from "../../redux/modal/selectors.js";
 import { openBookModal } from "../../redux/modal/slice.js";
 
 export default function Card({ value }) {

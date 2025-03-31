@@ -10,7 +10,7 @@ import BookTrial from "./components/BookTrial/BookTrial";
 
 function App() {
   return (
-    <>
+    <div className="wrapper">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="teachers" element={<Teachers />} />
@@ -20,7 +20,7 @@ function App() {
       <LoginForm />
       <RegistrationForm />
       <BookTrial />
-    </>
+    </div>
   );
 }
 
